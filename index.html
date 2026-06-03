@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babskie Sprawy | Beata Rucińska | Suwałki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #2CB8A4;
+      --teal-dark: #1E9E8C;
+      --teal-light: #EAF6F5;
+      --dark: #1A1A1A;
+      --grey: #6B6B6B;
+      --light-grey: #F5F5F5;
+      --border: #E4E4E4;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-logo span { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--teal-dark); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--white);
+      z-index: 199;
+      flex-direction: column;
+      padding: 32px 24px;
+      gap: 0;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      transition: background 0.2s;
+    }
+
+    .mobile-menu-cta.secondary {
+      background: var(--light-grey);
+      color: var(--dark);
+    }
+
+    .mobile-menu-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    .mobile-menu-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-menu-link svg { color: var(--grey); }
+
+    .mobile-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .mobile-social a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding-top: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 65vh;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      background: var(--teal-light);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+
+    .hero-image::after { display: none; }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 56px;
+      background: var(--white);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--teal);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 4.5vw, 68px);
+      font-weight: 400;
+      line-height: 1.12;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 380px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 320px;
+    }
+
+    .btn-messenger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 17px 28px;
+      background: #0084FF;
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-messenger:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
+      background: transparent;
+      color: var(--dark);
+      font-size: 15px;
+      font-weight: 400;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--dark); }
+
+    /* ===== USŁUGI ===== */
+    .services {
+      padding: 96px 40px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 4px 24px rgba(44,184,164,0.1);
+    }
+
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .service-from {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--teal);
+    }
+
+    /* ===== CENNIK ===== */
+    .cennik {
+      padding: 96px 40px;
+      background: var(--dark);
+    }
+
+    .cennik .section-eyebrow { color: var(--teal); }
+    .cennik .section-eyebrow::before { background: var(--teal); }
+
+    .cennik .section-title {
+      color: var(--white);
+      margin-bottom: 64px;
+    }
+
+    .cennik-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #2E2E2E;
+    }
+
+    .cennik-tab {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .cennik-tab.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+
+    .cennik-panel { display: none; }
+    .cennik-panel.active { display: block; }
+
+    .cennik-list { max-width: 600px; }
+
+    .cennik-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid #252525;
+    }
+
+    .cennik-row:last-child { border-bottom: none; }
+
+    .cennik-name {
+      font-size: 15px;
+      color: #C8C8C8;
+      font-weight: 300;
+    }
+
+    .cennik-price {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    /* ===== O BEACIE ===== */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-img {
+      overflow: hidden;
+      background: var(--teal-light);
+      min-height: 560px;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .about-img .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      background: linear-gradient(160deg, #D4EEE9 0%, #A8D8D0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .about-content {
+      padding: 80px 64px;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-content blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--dark);
+      padding-left: 24px;
+      border-left: 3px solid var(--teal);
+      margin-bottom: 28px;
+    }
+
+    .about-content p {
+      font-size: 15px;
+      color: var(--grey);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tag::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ===== CTA SEKCJA ===== */
+    .cta-section {
+      padding: 112px 40px;
+      text-align: center;
+    }
+
+    .cta-section .section-eyebrow { justify-content: center; }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 16px auto 20px;
+      max-width: 580px;
+    }
+
+    .cta-section p {
+      font-size: 17px;
+      color: var(--grey);
+      max-width: 420px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-lg-messenger {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 19px 40px;
+      background: #0084FF;
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-lg-messenger:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-lg-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 19px 40px;
+      background: var(--light-grey);
+      color: var(--dark);
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .btn-lg-phone:hover { background: #EBEBEB; }
+
+    .cta-note {
+      margin-top: 24px;
+      font-size: 14px;
+      color: #BBBBBB;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      padding: 56px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--teal); }
+
+    .footer-mid {
+      text-align: center;
+      font-size: 17px;
+      color: #aaa;
+      line-height: 1.9;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 17px;
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--teal); }
+
+    /* ===== ANIMACJE ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+
+      .nav-links, .nav-cta { display: none; }
+
+      .hamburger { display: flex; }
+
+      .hero {
+        display: block;
+        position: relative;
+        height: 100svh;
+        min-height: 600px;
+        max-height: none;
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+      }
+
+      .hero-image img {
+        object-position: 60% 15%;
+      }
+
+      .hero-image::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0,0,0,0.92) 0%,
+          rgba(0,0,0,0.75) 35%,
+          rgba(0,0,0,0.2) 65%,
+          rgba(0,0,0,0) 100%
+        );
+      }
+
+      .hero-text {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 24px 44px;
+        max-width: 100%;
+        background: transparent;
+      }
+
+      .hero-tag { color: rgba(255,255,255,0.9); }
+      .hero h1 { color: var(--white); font-size: clamp(34px, 8.5vw, 48px); margin-bottom: 12px; }
+      .hero h1 em { color: #4FD8C4; }
+      .hero-sub { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 24px; max-width: 100%; }
+      .btn-outline { color: var(--white); border-color: rgba(255,255,255,0.4); }
+      .hero-ctas { max-width: 100%; }
+
+      .hero-ctas { max-width: 100%; }
+
+      .services { padding: 64px 24px; }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .cennik { padding: 64px 24px; }
+
+      .about { grid-template-columns: 1fr; }
+
+      .about-img { min-height: 280px; }
+      .about-img .img-placeholder { min-height: 280px; }
+
+      .about-content { padding: 48px 24px; }
+
+      .cta-section { padding: 72px 24px; }
+
+      .cta-btns { flex-direction: column; align-items: stretch; }
+      .btn-lg-messenger, .btn-lg-phone { justify-content: center; }
+
+      footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 48px 24px;
+        gap: 20px;
+      }
+
+      .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 540px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Babskie<span>.</span>Sprawy</a>
+
+    <div class="nav-links">
+      <a href="#uslugi">Zabiegi</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#o-mnie">O mnie</a>
+    </div>
+
+    <a href="https://m.me/babskiesprawybeatarucinska1" class="nav-cta" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.821 1.295 5.338 3.338 7.068V22l3.046-1.668c.813.224 1.674.345 2.616.345 5.523 0 10-4.145 10-9.259C21 6.146 17.523 2 12 2zm1.005 12.467l-2.548-2.717-4.972 2.717 5.473-5.801 2.609 2.717 4.91-2.717-5.472 5.801z"/></svg>
+      Napisz na Messengerze
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="https://m.me/babskiesprawybeatarucinska1" class="mobile-menu-cta" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.821 1.295 5.338 3.338 7.068V22l3.046-1.668c.813.224 1.674.345 2.616.345 5.523 0 10-4.145 10-9.259C21 6.146 17.523 2 12 2zm1.005 12.467l-2.548-2.717-4.972 2.717 5.473-5.801 2.609 2.717 4.91-2.717-5.472 5.801z"/></svg>
+      Umów się przez Messenger
+    </a>
+    <a href="tel:507211000" class="mobile-menu-cta secondary">
+      Zadzwoń: 507 211 000
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <a href="#uslugi" class="mobile-menu-link" id="menuUslugi">
+      Zabiegi
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+    <a href="#cennik" class="mobile-menu-link" id="menuCennik">
+      Cennik
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+    <a href="#o-mnie" class="mobile-menu-link" id="menuOMnie">
+      O mnie
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+    <a href="#kontakt" class="mobile-menu-link" id="menuKontakt">
+      Kontakt
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <div class="mobile-social">
+      <a href="https://www.facebook.com/babskiesprawybeatarucinska1" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/babskiesprawy.suwalki/" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-tag reveal">Suwałki, Noniewicza 95</p>
+      <h1 class="reveal reveal-d1">
+        Twoja skóra<br>zasługuje na<br><em>najlepsze.</em>
+      </h1>
+      <p class="hero-sub reveal reveal-d2">
+        Gabinet estetyczny prowadzony przez mgr pielęgniarstwa. Laser tulowy, radiofrekwencja mikroigłowa, makijaż permanentny, mezoterapia.
+      </p>
+      <div class="hero-ctas reveal reveal-d3">
+        <a href="https://m.me/babskiesprawybeatarucinska1" class="btn-messenger" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.821 1.295 5.338 3.338 7.068V22l3.046-1.668c.813.224 1.674.345 2.616.345 5.523 0 10-4.145 10-9.259C21 6.146 17.523 2 12 2zm1.005 12.467l-2.548-2.717-4.972 2.717 5.473-5.801 2.609 2.717 4.91-2.717-5.472 5.801z"/></svg>
+          Umów wizytę przez Messenger
+        </a>
+        <a href="#cennik" class="btn-outline">Zobacz cennik</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/hero.jpg.webp" alt="Beata Rucińska - gabinet Babskie Sprawy Suwałki">
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section class="services" id="uslugi">
+    <p class="section-eyebrow reveal">Zabiegi</p>
+    <h2 class="section-title reveal">Skuteczne zabiegi estetyczne w Suwałkach.</h2>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3>Laser tulowy</h3>
+        <p>Przebarwienia, lifting, rewitalizacja. Twarz, szyja, dekolt, dłonie z ampułką tropokolagenu.</p>
+        <span class="service-from">od 300 zł</span>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <div class="service-num">02</div>
+        <h3>Radiofrekwencja mikroigłowa</h3>
+        <p>Głęboka przebudowa skóry, poprawa napięcia i tekstury. Efekty widoczne już po pierwszym zabiegu.</p>
+        <span class="service-from">od 600 zł</span>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-num">03</div>
+        <h3>Mezoterapia igłowa</h3>
+        <p>Intensywne nawilżenie i odżywienie skóry twarzy oraz skóry głowy.</p>
+        <span class="service-from">od 400 zł</span>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-num">04</div>
+        <h3>Makijaż permanentny</h3>
+        <p>Brwi, usta, kreski. Trwały efekt, który oszczędza czas każdego dnia.</p>
+        <span class="service-from">od 700 zł</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENNIK -->
+  <section class="cennik" id="cennik">
+    <p class="section-eyebrow reveal">Cennik</p>
+    <h2 class="section-title reveal">Przejrzyste ceny,<br>bez niespodzianek.</h2>
+
+    <div class="cennik-tabs">
+      <button class="cennik-tab active" onclick="switchTab('estetyka')">Kosmetologia estetyczna</button>
+      <button class="cennik-tab" onclick="switchTab('permanentny')">Makijaż permanentny</button>
+    </div>
+
+    <div class="cennik-panel active" id="tab-estetyka">
+      <div class="cennik-list">
+        <div class="cennik-row"><span class="cennik-name">RF mikroigłowa twarz</span><span class="cennik-price">600 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">RF mikroigłowa twarz + szyja + dekolt</span><span class="cennik-price">900 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Laser tulowy twarz + ampułka</span><span class="cennik-price">800 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Laser tulowy twarz + szyja + ampułka</span><span class="cennik-price">1 000 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Laser tulowy twarz + szyja + dekolt + ampułka</span><span class="cennik-price">1 200 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Laser tulowy dłonie</span><span class="cennik-price">300 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Mezoterapia igłowa twarzy</span><span class="cennik-price">500 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Mezoterapia igłowa skóry głowy</span><span class="cennik-price">400 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Konsultacja</span><span class="cennik-price">50 zł</span></div>
+      </div>
+    </div>
+
+    <div class="cennik-panel" id="tab-permanentny">
+      <div class="cennik-list">
+        <div class="cennik-row"><span class="cennik-name">Brwi</span><span class="cennik-price">1 100 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Usta</span><span class="cennik-price">1 100 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Kreska Baby Liner</span><span class="cennik-price">700 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Kreska dekoracyjna</span><span class="cennik-price">1 100 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Kreska Soft Liner cieniowana</span><span class="cennik-price">1 100 zł</span></div>
+        <div class="cennik-row"><span class="cennik-name">Usuwanie laserowe makijażu permanentnego</span><span class="cennik-price">250 zł</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O BEACIE -->
+  <section class="about" id="o-mnie">
+    <div class="about-img">
+      <img src="images/beata.jpg.webp" alt="Beata Rucińska kosmetolog Suwałki">
+    </div>
+    <div class="about-content">
+      <p class="section-eyebrow reveal">O Beacie</p>
+      <blockquote class="reveal">"Kiedy jesteś u mnie, jestem tylko dla Ciebie."</blockquote>
+      <p class="reveal">Beata Rucińska to magister pielęgniarstwa z wieloletnim doświadczeniem w kosmetologii estetycznej. Łączy wiedzę medyczną z pasją do estetyki.</p>
+      <p class="reveal">Każda wizyta jest zaplanowana z pełnym skupieniem. Bez pośpiechu. Twój czas i Twój efekt są dla niej równie ważne.</p>
+      <div class="tags reveal">
+        <span class="tag">Mgr pielęgniarstwa</span>
+        <span class="tag">Laser tulowy</span>
+        <span class="tag">RF mikroigłowa</span>
+        <span class="tag">Mezoterapia</span>
+        <span class="tag">Makijaż permanentny</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="kontakt">
+    <p class="section-eyebrow reveal">Kontakt</p>
+    <h2 class="reveal">Zarezerwuj wizytę.</h2>
+    <p class="reveal">Napisz wiadomość i umów termin w kilka sekund. Odpowiadamy szybko.</p>
+    <div class="cta-btns reveal">
+      <a href="https://m.me/babskiesprawybeatarucinska1" class="btn-lg-messenger" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.821 1.295 5.338 3.338 7.068V22l3.046-1.668c.813.224 1.674.345 2.616.345 5.523 0 10-4.145 10-9.259C21 6.146 17.523 2 12 2zm1.005 12.467l-2.548-2.717-4.972 2.717 5.473-5.801 2.609 2.717 4.91-2.717-5.472 5.801z"/></svg>
+        Napisz na Messengerze
+      </a>
+      <a href="tel:507211000" class="btn-lg-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        507 211 000
+      </a>
+      <a href="https://maps.app.goo.gl/B7Pg464xPRLFgWdBA" class="btn-lg-phone" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Jak dojechać
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Babskie<span>.</span>Sprawy</div>
+    <div class="footer-mid">
+      Beata Rucińska<br>
+      Noniewicza 95, Suwałki
+    </div>
+    <div class="footer-links">
+      <a href="https://www.facebook.com/babskiesprawybeatarucinska1" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/babskiesprawy.suwalki/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    ['menuUslugi','menuCennik','menuOMnie','menuKontakt'].forEach(id => {
+      document.getElementById(id).addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Cennik tabs
+    function switchTab(name) {
+      document.querySelectorAll('.cennik-tab').forEach((t, i) => {
+        t.classList.toggle('active', (i === 0 && name === 'estetyka') || (i === 1 && name === 'permanentny'));
+      });
+      document.querySelectorAll('.cennik-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
